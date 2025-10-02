@@ -18,6 +18,12 @@ public class MoveCamera : MonoBehaviour
     float xRotation = 0f; //Pitch
     float yRotation = 0f; //Yaw
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+    }
+
     void Update()
     {
         //mäuschenkontrolle
