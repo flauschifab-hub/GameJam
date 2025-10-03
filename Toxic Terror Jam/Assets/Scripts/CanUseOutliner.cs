@@ -13,25 +13,17 @@ public class CanUseOutliner : MonoBehaviour
 
     [Header("Settings")]
     public float RaycastRange = 5f;
-    public string playerCameraTag = "MainCamera";
-
-    private Camera playerCamera;
+    public Camera playerCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Find Cam
-        GameObject camObj = GameObject.FindGameObjectWithTag(playerCameraTag);
-        if (camObj != null)
-            playerCamera = camObj.GetComponent<Camera>();
-
         if (outline == null)
             outline = GetComponent<Outline>();
 
         if (outline != null)
             outline.enabled = false;
-
-        Debug.Log("camera found");
+        
         
     }
 
@@ -45,12 +37,13 @@ public class CanUseOutliner : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, RaycastRange))
         {
-            if (hit.collider.gameObject == gameObject)
+            var target = hit.collider.GetComponentInParent<CanUseOutliner>();
+            if (target == this)
             {
                 outline.enabled = true;
                 Debug.Log("Camera hit");
+                return;
             }
-             return;
         }
 
         //If not just disable
