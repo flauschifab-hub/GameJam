@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Code von Jan
+//Can move und rotation lock von Fabio
 
 public class MoveCamera : MonoBehaviour
 {
@@ -17,15 +18,16 @@ public class MoveCamera : MonoBehaviour
     public float maxYRotation;
     float xRotation = 0f; //Pitch
     float yRotation = 0f; //Yaw
-
+    public bool canMove = true;
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        SetCursorState(canMove);
     }
 
     void Update()
     {
+        SetCursorState(canMove);
+        if (!canMove) return;
         //mäuschenkontrolle
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
@@ -36,5 +38,27 @@ public class MoveCamera : MonoBehaviour
         yRotation += mouseX;//das gleich aber links und rechts
         yRotation = Mathf.Clamp(yRotation, minYRotation, maxYRotation);
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+    }
+
+    private void SetCursorState(bool locked)
+    {
+        if (locked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void SetRotation(Quaternion newRotation)
+    {
+        Vector3 euler = newRotation.eulerAngles;
+        xRotation = euler.x;
+        yRotation = euler.y;
+        transform.rotation = newRotation;
     }
 }
