@@ -4398,17 +4398,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 74572222}
   m_VersionIndex: 1269
   m_IsSelectable: 1
-  m_SelectedFaces: 01000000
-  m_SelectedEdges:
-  - a: 4
-    b: 5
-  - a: 6
-    b: 4
-  - a: 5
-    b: 7
-  - a: 7
-    b: 6
-  m_SelectedVertices: 04000000050000000600000007000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!43 &54234568
 Mesh:
   m_ObjectHideFlags: 0
@@ -4806,7 +4798,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 14785561521c20f4bbe835797e3b0197, type: 2}
+      objectReference: {fileID: 2100000, guid: ffe62e817d46d2a4e886b016b3c7ec1f, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2c7ad13e227d19144a880832570ff630,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -17886,7 +17878,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1518821669}
+  m_Mesh: {fileID: 2043699226}
 --- !u!33 &315804907
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -63589,7 +63581,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1478698200}
+  m_Mesh: {fileID: 1125992733}
 --- !u!33 &1243228458
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -82691,7 +82683,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1518821669}
+  m_Mesh: {fileID: 531913301}
 --- !u!33 &1696474719
 MeshFilter:
   m_ObjectHideFlags: 10
