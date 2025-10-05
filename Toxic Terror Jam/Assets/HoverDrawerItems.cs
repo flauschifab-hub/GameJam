@@ -6,6 +6,10 @@ using TMPro;
 public class HoverDrawerItems : MonoBehaviour
 {
     [Header("Settings")]
+
+    public Camera playerCamera;
+
+    public float RaycastRange = 5f;
     public Outline Outline;
     public float ScaleSpeed;
     public TMP_Text HoverText;
@@ -29,12 +33,57 @@ public class HoverDrawerItems : MonoBehaviour
             HoverText.text = "";
     }
 
-    private void OnMouseEnter()
+    void Update()
+    {
+        CheckHover();
+    }
+
+void CheckHover()
+{
+    Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+    Debug.DrawRay(ray.origin, ray.direction * RaycastRange, Color.green);
+
+    RaycastHit[] hits = Physics.RaycastAll(ray, RaycastRange);
+    RaycastHit? closestValidHit = null;
+    float closestDistance = Mathf.Infinity;
+
+    foreach (RaycastHit hit in hits)
+    {
+        if (hit.collider.CompareTag("DrawerItems"))
+        {
+            if (hit.distance < closestDistance)
+            {
+                closestValidHit = hit;
+                closestDistance = hit.distance;
+            }
+        }
+    }
+
+    bool hitThis = false;
+
+    if (closestValidHit.HasValue)
+    {
+        if (closestValidHit.Value.collider.GetComponentInParent<HoverDrawerItems>() == this)
+            hitThis = true;
+    }
+
+    if (hitThis && !isHovered)
+        OnHoverEnter();
+    else if (!hitThis && isHovered)
+        OnHoverExit();
+}
+
+
+
+    
+
+    private void OnHoverEnter()
     {
         isHovered = true;
         if (Outline != null)
             Outline.enabled = true;
 
+        StopAllCoroutines();
         StartCoroutine(ScaleTo(originalScale * ScaleUpAmount));
 
         if (HoverText != null)
@@ -46,12 +95,14 @@ public class HoverDrawerItems : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+
+    private void OnHoverExit()
     {
         isHovered = false;
         if (Outline != null)
             Outline.enabled = false;
 
+        StopAllCoroutines();
         StartCoroutine(ScaleTo(originalScale));
 
         if (HoverText != null)

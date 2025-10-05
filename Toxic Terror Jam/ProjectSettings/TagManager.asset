@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CanInteract
   - Telephone
+  - DrawerItems
   layers:
   - Default
   - TransparentFX
