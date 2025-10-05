@@ -21,7 +21,7 @@ public class DrawerAnim : MonoBehaviour
     public float CameraMoveSpeed = 5f;
 
     public MoveCamera MoveCameraScript;
-    public DrawerItemHandler drawerItemHandler;
+    public ItemSelector ItemSelector;
     private bool isPulledOut = false;
 
     // Update is called once per frame
@@ -50,8 +50,8 @@ public class DrawerAnim : MonoBehaviour
                         StopAllCoroutines();
                         StartCoroutine(MoveCameraTo(TargetCamera, drawerLookAtPos.position, drawerLookAtPos.rotation, false));
                         isPulledOut = true;
-                        if (drawerItemHandler != null)
-                            drawerItemHandler.enabled = true;
+                        if (ItemSelector != null)
+                            ItemSelector.enabled = true;
                     }
                     else
                     {
@@ -59,8 +59,8 @@ public class DrawerAnim : MonoBehaviour
                         StopAllCoroutines();
                         StartCoroutine(MoveCameraTo(TargetCamera, OriginalCameraPosition.position, OriginalCameraPosition.rotation, true));
                         isPulledOut = false;
-                        if (drawerItemHandler != null)
-                            drawerItemHandler.enabled = false;
+                        if (ItemSelector != null)
+                            ItemSelector.enabled = false;
                     }
                 }
             }
