@@ -4618,7 +4618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23710,7 +23710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &372582190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -105838,6 +105838,9 @@ MonoBehaviour:
   itemNameText: {fileID: 541826918}
   itemDescriptionText: {fileID: 1351968553}
   itemContainer: {fileID: 2066450924}
+  letterSound: {fileID: 8300000, guid: d96f5e1f7c449ed43b250380346050a4, type: 3}
+  letterDelay: 0.05
+  audioSource: {fileID: 330585549}
 --- !u!1 &2078932124
 GameObject:
   m_ObjectHideFlags: 0

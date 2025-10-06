@@ -2,24 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class ItemSelector : MonoBehaviour
 {
 
     [Header("UI")]
-    [SerializeField]private GameObject itemNamedescriptionPanel;
+    [SerializeField] private GameObject itemNamedescriptionPanel;
     [SerializeField] private TextMeshProUGUI itemNameText;
-    [SerializeField]private TextMeshProUGUI itemDescriptionText;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
 
     [Header("Settings")]
-    [SerializeField]private Transform itemContainer;
+    [SerializeField] private Transform itemContainer;
+    [SerializeField] private AudioClip letterSound;
+    [SerializeField] private float letterDelay = 0.03f;
+    [SerializeField] private AudioSource audioSource;
     private List<ItemSlot> items = new List<ItemSlot>();
     private int selectedIndex = -1;
+    private Coroutine typingCoroutine;
     // Start is called before the first frame update
     void Start()
     {
         RefreshItemsList();
-        UpdateUI();
+        HidePanel();
     }
 
     // Update is called once per frame
@@ -64,7 +69,7 @@ public class ItemSelector : MonoBehaviour
         if (selectedIndex >= items.Count)
             selectedIndex = 0;
         UpdateSelection();
-     }
+    }
 
 
     public void UpdateSelection()
@@ -82,15 +87,47 @@ public class ItemSelector : MonoBehaviour
     {
         if (selectedIndex < 0 || selectedIndex >= items.Count)
         {
-            itemNameText.text = "";
-            itemDescriptionText.text = "";
+            itemNamedescriptionPanel.SetActive(false);
             return;
         }
-
+        
         ItemSlot current = items[selectedIndex];
         itemNameText.text = current.ItemName;
-        itemDescriptionText.text = current.itemDescription;
+        ShowPanel();
+
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeText(current.itemDescription));
     }
-    
+
+    private IEnumerator TypeText(string text)
+    {
+        itemDescriptionText.text = "";
+
+        foreach (char c in text)
+        {
+            itemDescriptionText.text += c;
+
+            if (letterSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(letterSound);
+            }
+
+            yield return new WaitForSeconds(letterDelay);
+        }
+    }
+
+    private void ShowPanel()
+    {
+        itemNamedescriptionPanel.SetActive(true);
+        itemNameText.gameObject.SetActive(true);
+    }
+
+    private void HidePanel()
+    {
+        itemNamedescriptionPanel.SetActive(false);
+        itemNameText.gameObject.SetActive(false);
+    }    
 
 }

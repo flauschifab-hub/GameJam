@@ -7,6 +7,7 @@ public class ItemSlot : MonoBehaviour
     [Header("TMProText")]
     public string ItemName;
     [TextArea]public string itemDescription;
+    
 
     private Outline outline;
     private Vector3 originalScale;
