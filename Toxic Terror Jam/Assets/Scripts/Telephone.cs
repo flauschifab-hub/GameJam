@@ -10,6 +10,7 @@ public class PhoneCharacter
     public string characterName;
     [TextArea(2, 5)]
     public string[] possibleResponses;
+    [HideInInspector] public int currentResponseIndex = 0;
 }
 
 public class Telephone : MonoBehaviour
@@ -36,7 +37,7 @@ public class Telephone : MonoBehaviour
 
     [Header("Characer")]
     public PhoneCharacter[] allCharacters;
-    public int maxUniqueCharacters = 5;
+    public int maxUniqueCharactersPerRun = 5;
     private List<PhoneCharacter> activeCharacters = new List<PhoneCharacter>();
 
     [Header("WriteEffectSettings")]
@@ -65,7 +66,7 @@ public class Telephone : MonoBehaviour
             return;
         }
         List<PhoneCharacter> pool = new List<PhoneCharacter>(allCharacters);
-        for (int i = 0; i < Mathf.Min(maxUniqueCharacters, pool.Count); i++)
+        for (int i = 0; i < Mathf.Min(maxUniqueCharactersPerRun, pool.Count); i++)
         {
             int index = Random.Range(0, pool.Count);
             activeCharacters.Add(pool[index]);
@@ -141,7 +142,9 @@ public class Telephone : MonoBehaviour
         {
             PhoneCharacter caller = activeCharacters[Random.Range(0, activeCharacters.Count)];
 
-            string response = caller.possibleResponses[Random.Range(0, caller.possibleResponses.Length)];
+            string response = caller.possibleResponses[caller.currentResponseIndex];
+            caller.currentResponseIndex = (caller.currentResponseIndex + 1) % caller.possibleResponses.Length;
+
             string finalLine = $"{caller.characterName}: {response}";
 
             if (typingCoroutine != null)

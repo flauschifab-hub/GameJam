@@ -6,6 +6,7 @@ using System.Collections;
 
 public class ItemSelector : MonoBehaviour
 {
+    [SerializeField] private MoveCamera moveCamera;
 
     [Header("UI")]
     [SerializeField] private GameObject itemNamedescriptionPanel;
@@ -20,9 +21,14 @@ public class ItemSelector : MonoBehaviour
     private List<ItemSlot> items = new List<ItemSlot>();
     private int selectedIndex = -1;
     private Coroutine typingCoroutine;
+    private bool lastCameraState = true;
     // Start is called before the first frame update
     void Start()
     {
+        if (moveCamera == null)
+        {
+            moveCamera = FindObjectOfType<MoveCamera>();
+        }
         RefreshItemsList();
         HidePanel();
     }
@@ -30,6 +36,22 @@ public class ItemSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moveCamera == null) return;
+        if (lastCameraState != moveCamera.canMove)
+        {
+            lastCameraState = moveCamera.canMove;
+            if (moveCamera.canMove)
+            {
+                HidePanel();
+            }
+            else
+            {
+                if (selectedIndex >= 0 && selectedIndex < items.Count)
+                    ShowPanel();
+            }
+        }
+
+        if (moveCamera.canMove) return;
         if (items.Count == 0) return;
         if (Input.GetKeyDown(KeyCode.A))
         {

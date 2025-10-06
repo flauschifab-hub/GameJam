@@ -68149,7 +68149,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -78311,25 +78311,31 @@ MonoBehaviour:
   minRingDelay: 10
   maxRingDelay: 15
   minRingDuration: 5
-  maxRingDuration: 10
-  RaycastRange: 12
+  maxRingDuration: 15
+  RaycastRange: 15
   MainCamera: {fileID: 330585545}
   DialogPanel: {fileID: 372582189}
   DialogText: {fileID: 1488670044}
   targetTag: Telephone
-  ringingClip: {fileID: 0}
+  ringingClip: {fileID: 8300000, guid: 2670f3e39168af0478c81a5a8c21364f, type: 3}
   audioSource: {fileID: 1324640142}
   allCharacters:
   - characterName: Test1
     possibleResponses:
     - Test1
+    - Das ist Response 2
+    currentResponseIndex: 0
   - characterName: Test2
     possibleResponses:
     - Test2
+    - Das ist Response 2
+    currentResponseIndex: 0
   - characterName: Test3
     possibleResponses:
     - Test3
-  maxUniqueCharacters: 3
+    - Das ist Response 2
+    currentResponseIndex: 0
+  maxUniqueCharactersPerRun: 5
   typingSpeed: 0.1
 --- !u!1 &1566819731
 GameObject:
@@ -105834,6 +105840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5381362f941ed894ab2ee24140a41a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveCamera: {fileID: 0}
   itemNamedescriptionPanel: {fileID: 1313795179}
   itemNameText: {fileID: 541826918}
   itemDescriptionText: {fileID: 1351968553}
