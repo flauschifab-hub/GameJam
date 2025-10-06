@@ -43,6 +43,8 @@ public class Telephone : MonoBehaviour
     [Header("WriteEffectSettings")]
     public float typingSpeed = 0.1f;
     private Coroutine typingCoroutine;
+
+    private bool inCall = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +116,7 @@ public class Telephone : MonoBehaviour
 
     void StartRinging()
     {
-        if (isRinging) return;
+        if (isRinging || inCall) return;
         isRinging = true;
         Debug.Log("Ringing");
 
@@ -134,6 +136,8 @@ public class Telephone : MonoBehaviour
 
     void AnswerPhone()
     {
+        if (inCall) return;
+        inCall = true;
         StopRinging();
         if (DialogPanel != null)
             DialogPanel.SetActive(true);
@@ -153,6 +157,19 @@ public class Telephone : MonoBehaviour
             typingCoroutine = StartCoroutine(TypeText(finalLine));
 
         }
+    }
+
+    public void EndCall()
+    {
+        inCall = false;
+        if (DialogPanel != null)
+            DialogPanel.SetActive(false);
+
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        DialogText.text = "";
+        Debug.Log("Call ended");
     }
 
     IEnumerator TypeText(string textToType)
