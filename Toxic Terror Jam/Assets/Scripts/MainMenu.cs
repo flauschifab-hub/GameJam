@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public TMP_Dropdown WindowModeDropDown;
     public bool SettingsOpen = false;
 
-    public string gameSceneName = "GameScene";
+    public string gameSceneName = "IntroScene";
 
     private List<Resolution> uniqueResolutions = new List<Resolution>();
 

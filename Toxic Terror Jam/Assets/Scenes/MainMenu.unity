@@ -4301,7 +4301,7 @@ MonoBehaviour:
   ResolutionDropdown: {fileID: 1244134036}
   WindowModeDropDown: {fileID: 1029254241}
   SettingsOpen: 0
-  gameSceneName: GameScene
+  gameSceneName: IntroScene
 --- !u!1 &2110071587
 GameObject:
   m_ObjectHideFlags: 0
