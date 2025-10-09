@@ -8,9 +8,11 @@ using System.Linq;
 public class MainMenu : MonoBehaviour
 {
     public GameObject SettingsPanel;
+    public GameObject AchievementPanel;
     public TMP_Dropdown ResolutionDropdown;
     public TMP_Dropdown WindowModeDropDown;
-    public bool SettingsOpen = false;
+    public bool SettingsOpen = false; 
+    public bool AchievementPanelOpen = false;
 
     public string gameSceneName = "IntroScene";
 
@@ -66,6 +68,11 @@ public class MainMenu : MonoBehaviour
             CloseSettings();
 
         }
+        if (AchievementPanelOpen && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseAchievementPanel();
+
+        }
     }
 
     public void Play()
@@ -90,6 +97,19 @@ public class MainMenu : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
         SettingsOpen = false;
+
+    }
+
+        public void OpenAchievementPanel()
+    {
+        AchievementPanel.SetActive(true);
+        AchievementPanelOpen = true;
+    }
+
+    public void CloseAchievementPanel()
+    {
+        AchievementPanel.SetActive(false);
+        AchievementPanelOpen = false;
 
     }
 
