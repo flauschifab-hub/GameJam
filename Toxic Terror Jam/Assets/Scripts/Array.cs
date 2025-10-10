@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class Array : MonoBehaviour
 {
-    public GameObject[] Coworkers;
+    public GameObject[] coworkersPrefabs;
+
+    public Transform spawnpoint;
 
     void Start()
     {
-       Coworkers = GameObject.FindGameObjectsWithTag("Coworkers");
+       SpawnRandomCoworker();
+    }
 
-       for (int i = 0; i < Coworkers.Length; i++)
-       {
-            Debug.Log("Coworker Number "+i+" is named "+Coworkers[i].name);
-       }
+    void SpawnRandomCoworker()
+    {
+        if (coworkersPrefabs.Length == 0)
+        {
+            Debug.LogWarning("KeineCopworkers");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, coworkersPrefabs.Length);
+
+        Vector3 position = spawnpoint != null ? spawnpoint.position : transform.position;
+
+        GameObject spawned = Instantiate(coworkersPrefabs[randomIndex], position, Quaternion.identity);
+
+        Debug.Log("Coworker gespawnt: " + spawned.name);
+    
+    
+    
     }
 }

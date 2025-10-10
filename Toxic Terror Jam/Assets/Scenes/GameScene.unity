@@ -30018,6 +30018,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 490863524}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &492643177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492643179}
+  - component: {fileID: 492643178}
+  m_Layer: 0
+  m_Name: CoWorkerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &492643178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492643177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23606e615a87d6b459d0738c769cf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coworkersPrefabs: []
+  spawnpoint: {fileID: 0}
+--- !u!4 &492643179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492643177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.600085, y: -1.7071605, z: -2.0963929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &496234535
 Mesh:
   m_ObjectHideFlags: 0
@@ -109820,3 +109866,4 @@ SceneRoots:
   - {fileID: 1543025241}
   - {fileID: 1576326788}
   - {fileID: 2003809655}
+  - {fileID: 492643179}
